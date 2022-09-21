@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-back-button defaulHref ="" ></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalhes do Contatos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item *ngIf="!modoDeEdicao">Nome: {{contatoSelecionado.nome}}</ion-item>
+  <ion-item *ngIf="!modoDeEdicao">Num.: {{contatoSelecionado.numero}}</ion-item>
+  
+  <ion-button *ngIf="!modoDeEdicao" (click)="iniciarEdicao()">Alterar Dados</ion-button>
+
+  <form *ngIf="modoDeEdicao">
+    <ion-item>
+      <ion-label position="floating">Nome</ion-label>
+      <ion-input [(ngModel)]="contatoSelecionado.nome" name="nome"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Numero</ion-label>
+      <ion-input [(ngModel)]="contatoSelecionado.numero" name="numero"></ion-input>
+    </ion-item>
+
+    <ion-button (click)="encerrarEdicao()" routerLink="/agenda-lista/">Salvar</ion-button>
+  </form>
+</ion-content>
