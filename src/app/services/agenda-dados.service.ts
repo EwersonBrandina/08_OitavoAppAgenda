@@ -1,16 +1,19 @@
 import { Injectable } from '@angular/core';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class AgendaDadosService {
 
   private contatos = [
-    {id: 1, nome: 'Ewerson', numero: "(35)9-9999-9999"},
-    {id: 2, nome: 'Bruna', numero: "(35)8-8888-8888"}
+    {id: 1, nome: 'Ewerson', sobrenome: 'Brandina', tipoDeTelefone: "Celular", numero: "(35)9-9999-9999", email: "teste1@teste.com"},
+    {id: 2, nome: 'Bruna', sobrenome: 'Lopes', tipoDeTelefone: "Celular", numero:"(35)8-8888-8888", email: "teste2@teste.com"}
   ]
 
   constructor() { }
+
+  
 
   enviarTodosDados(){
     return this.contatos
@@ -22,7 +25,12 @@ export class AgendaDadosService {
   }
 
   recebeDados(dadosRecebidos : any){
-    dadosRecebidos.id = this.contatos.length + 1
+    dadosRecebidos.id = Math.max(this.contatos.length + 1)
     this.contatos.push(dadosRecebidos)
   }
+
+  excluiDados(dadosRecebidos : any){
+    this.contatos.splice(this.contatos.indexOf(dadosRecebidos), 1)
+  }
+
 }

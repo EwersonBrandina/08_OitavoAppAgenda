@@ -10,9 +10,14 @@ import { AgendaDadosService } from 'src/app/services/agenda-dados.service';
 export class AgendaListaPage implements OnInit {
 
   public todosDados : any
+  public modoDeInsercao = false
 
   constructor(private dados: AgendaDadosService) {
     this.todosDados = this.dados.enviarTodosDados()
+  }
+  
+  inserirDados(){
+    this.modoDeInsercao = true
   }
 
   ngOnInit() {

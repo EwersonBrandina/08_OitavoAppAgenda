@@ -8,24 +8,23 @@
 </ion-header>
 
 <ion-fab  horizontal="end" slot="fixed" edge="true">
-  <ion-fab-button routerLink="/detalhes-produtos/-1">
+  <ion-fab-button routerLink="/agenda-detalhes/-1">
     <ion-icon name="add"></ion-icon>
   </ion-fab-button>
 </ion-fab>
 
-<form *ngIf="modoDeEdicao" (ngSubimt)="encerrarEdicao()">
+<form *ngIf="modoDeEdicao" (ngSubimt)="encerrarEdicao()" >
   <ion-item>
-    <ion-label position="floating">Nome</ion-label>
-    <ion-input [(ngModel)]="produtoSelecionado.nome" name="nome"></ion-input>
+    <ion-label position="floating"></ion-label>
+    <ion-input [(ngModel)]="produtoSelecionado.nome" formControlName="nome" ></ion-input>
   </ion-item>
-
 
 </form>
 
 <ion-content>
   <ion-list>
     <ion-item *ngFor="let todosDados of todosDados" routerLink="/agenda-detalhes/{{todosDados.id}}">
-      <ion-label>{{todosDados.nome}}</ion-label>
+      <ion-label>{{todosDados.nome}} {{todosDados.sobrenome}}</ion-label>
     </ion-item>
   </ion-list>
 </ion-content>
