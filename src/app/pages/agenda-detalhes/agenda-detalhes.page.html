@@ -9,7 +9,7 @@
 </ion-header>
 
 <ion-fab  horizontal="end" slot="fixed" edge="true">
-  <ion-fab-button color="danger" (click)="presentAlert()" *ngIf="!modoDeEdicao">
+  <ion-fab-button color="danger" (click)="presentAlert()" (click)="excluirContato()" *ngIf="!modoDeEdicao">
     <ion-icon name="trash"></ion-icon>
   </ion-fab-button>
 </ion-fab>
@@ -17,7 +17,7 @@
 <ion-content>
   <ion-item *ngIf="!modoDeEdicao">Nome: {{contatoSelecionado.nome}}</ion-item>
   <ion-item *ngIf="!modoDeEdicao">Sobrenome: {{contatoSelecionado.sobrenome}}</ion-item>
-  <ion-item *ngIf="!modoDeEdicao">Tipo Tel.: {{contatoSelecionado.tipoDeTelefone}}</ion-item>
+  <ion-item *ngIf="!modoDeEdicao">Tipo Tel.: {{contatoSelecionado.escolha}}</ion-item>
   <ion-item *ngIf="!modoDeEdicao">Num.: {{contatoSelecionado.numero}}</ion-item>
   <ion-item *ngIf="!modoDeEdicao">Email.: {{contatoSelecionado.email}}</ion-item>
   
@@ -34,11 +34,10 @@
     </ion-item>
     <ion-list>
       <ion-item>
-        <ion-select [(ngModel)]="escolha" formControlName="escolha" placeholder="Escolha o Telefone">
+        <ion-select [(ngModel)]="contatoSelecionado.escolha" formControlName="escolha" placeholder="Escolha o Telefone">
           <ion-select-option value="Celular">Celular</ion-select-option>
           <ion-select-option value="Fixo">Fixo</ion-select-option>
         </ion-select>
-
       </ion-item>
     </ion-list>
     <ion-item>
@@ -50,7 +49,7 @@
       <ion-input [(ngModel)]="contatoSelecionado.email" formControlName="email"></ion-input>
     </ion-item>
 
-    <ion-button (click)="encerrarEdicao()" routerLink="/agenda-lista/">Salvar</ion-button>
+    <ion-button type="submit" routerLink="/agenda-lista/">Salvar</ion-button>
 
   </form>
 </ion-content>

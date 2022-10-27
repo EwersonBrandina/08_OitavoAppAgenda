@@ -7,8 +7,8 @@ import { Injectable } from '@angular/core';
 export class AgendaDadosService {
 
   private contatos = [
-    {id: 1, nome: 'Ewerson', sobrenome: 'Brandina', tipoDeTelefone: "Celular", numero: "(35)9-9999-9999", email: "teste1@teste.com"},
-    {id: 2, nome: 'Bruna', sobrenome: 'Lopes', tipoDeTelefone: "Celular", numero:"(35)8-8888-8888", email: "teste2@teste.com"}
+    {id: 1, nome: 'Ewerson', sobrenome: 'Brandina', escolha: "Celular", numero: "(35)9-9999-9999", email: "teste1@teste.com"},
+    {id: 2, nome: 'Bruna', sobrenome: 'Lopes', escolha: "Celular", numero:"(35)8-8888-8888", email: "teste2@teste.com"}
   ]
 
   constructor() { }

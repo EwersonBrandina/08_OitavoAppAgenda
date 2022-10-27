@@ -13,22 +13,22 @@ export class AgendaDetalhesPage implements OnInit {
   public modoDeEdicao = false
   public contatoSelecionado : any
   public escolha : string
-  
+  contatoForm : FormGroup
   userForm : FormGroup
 
   constructor(
     private router : Router,
     private route : ActivatedRoute,
     private agenda : AgendaDadosService,
-    private formBuilder : FormBuilder
-  ) { }
+    public formBuilder : FormBuilder 
+  ){ }
 
   ngOnInit() {
     const id : number = Number(this.route.snapshot.paramMap.get('id'))
     if (id > 0){
       this.contatoSelecionado = this.agenda.enviarDadosId(id)
     }else{
-      this.contatoSelecionado = {id, nome: "", sobrenome:"", tipoDeTelefone:"", numero:"", email:""}
+      this.contatoSelecionado = {id, nome: "", sobrenome:"", escolha:"", numero:"", email:""}
       this.modoDeEdicao = true
     }
     this.userForm = this.formBuilder.group({
@@ -47,10 +47,14 @@ export class AgendaDetalhesPage implements OnInit {
   encerrarEdicao(){
     const id : number = Number(this.route.snapshot.paramMap.get('id'))
     if (id > 0){
-      this.modoDeEdicao = false
+      if (this.contatoForm.valid){
+        this.modoDeEdicao = false
+      }
     }else{
-      this.agenda.recebeDados(this.contatoSelecionado)
-      this.modoDeEdicao = false
+      if (this.contatoForm.valid){
+        this.agenda.recebeDados(this.contatoSelecionado)
+        this.modoDeEdicao = false
+      }
     }
   }
 
@@ -58,5 +62,4 @@ export class AgendaDetalhesPage implements OnInit {
     this.agenda.excluiDados(this.contatoSelecionado)
     this.router.navigate(['/agenda-lista/'])
   }
-
 }
